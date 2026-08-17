@@ -30,4 +30,4 @@ def now():
 def broken():
     """练习坑 2 在这里：故意用错变量名，访问这个接口一定会报 500。"""
     lucky_number = 7
-    return {"lucky_number": unlucky_number}
+    return {"lucky_number": lucky_number}

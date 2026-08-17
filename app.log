@@ -1,0 +1,63 @@
+nohup: ignoring input
+INFO:     Started server process [20163]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     35.72.1.196:6231 - "GET / HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     35.72.1.196:32135 - "GET /now HTTP/1.1" 200 OK
+WARNING:  Invalid HTTP request received.
+INFO:     35.72.1.196:6251 - "GET /broken HTTP/1.1" 500 Internal Server Error
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/uvicorn/protocols/http/httptools_impl.py", line 422, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/uvicorn/middleware/proxy_headers.py", line 63, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/applications.py", line 1163, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/applications.py", line 96, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 186, in __call__
+    raise exc
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/middleware/errors.py", line 164, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/middleware/exceptions.py", line 63, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/middleware/asyncexitstack.py", line 18, in __call__
+    await self.app(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/routing.py", line 670, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/routing.py", line 2734, in app
+    await route.handle(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/routing.py", line 1281, in handle
+    await super().handle(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/routing.py", line 280, in handle
+    await self.app(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/routing.py", line 158, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/routing.py", line 144, in app
+    response = await f(request)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/routing.py", line 706, in app
+    raw_response = await run_endpoint_function(
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/fastapi/routing.py", line 354, in run_endpoint_function
+    return await run_in_threadpool(dependant.call, **values)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/starlette/concurrency.py", line 34, in run_in_threadpool
+    return await anyio.to_thread.run_sync(func)
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/anyio/to_thread.py", line 65, in run_sync
+    return await get_async_backend().run_sync_in_worker_thread(
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 2641, in run_sync_in_worker_thread
+    return await future
+  File "/home/zzzz/myapp/venv/lib/python3.10/site-packages/anyio/_backends/_asyncio.py", line 1033, in run
+    result = context.run(func, *args)
+  File "/home/zzzz/myapp/main.py", line 33, in broken
+    return {"lucky_number": unlucky_number}
+NameError: name 'unlucky_number' is not defined. Did you mean: 'lucky_number'?
